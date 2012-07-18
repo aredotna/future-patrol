@@ -1,9 +1,9 @@
 class FP.Views.Stream extends Backbone.View
-  el: '.column-wrap'
-
   initialize: (options) ->
     @slug = options.slug
+    @render()
 
+  render: ->
     FP.Utils.startLoad()
 
     $.ajax

@@ -7,6 +7,7 @@ window.FP =
   Collections: {},
   Routers: {},
   Views: {},
+
   Utils:
     startLoad: ->
       $("#fp").addClass('loading')
@@ -16,7 +17,6 @@ window.FP =
 
   initialize: ->
     @router = new FP.Routers.Router()
-
     Backbone.history.start({pushState: true})
 
     # Intercept internal links

@@ -3,8 +3,8 @@ class FP.Routers.Router extends Backbone.Router
     ""      : "index"
     ":slug" : "fragment"
 
-  index: -> console.log '@index'
+  index: ->
+    # index
 
   fragment: (slug) ->
-    console.log '@fragment'
-    view = new FP.Views.Stream(slug: slug)
+    view = new FP.Views.Stream(slug: slug, el: "##{slug}")
