@@ -1,16 +1,4 @@
-@import 'mixins';
-
-// CONSTANTS
-// ---------
-$unit: 20px;
-$column: 600px;
-$base-font-size: 15px;
-$base-line-height: 22px;
-
-$background-color: #111;
-$middleground-color: #333;
-$foreground-color: #666;
-$highlight-color: #ccc;
+@import "mixins";
 
 // BASE
 // ----
@@ -68,26 +56,8 @@ body {
   }
 }
 
-// PERSISTENT BRANDING / LOAD INDICATOR
-// ------------------------------------
-footer {
-  position: fixed;
-  bottom: $unit;
-  right: $unit;
-  width: 200px;
-  height: 63px;
-  
-  img {
-    @include opacity(50);
-    @include transition(opacity 0.25s);
-
-    &:hover { @include opacity(100); }
-  }
-}
-
-.loading { @include loading; }
-
-
+// FRAGMENT
+// --------
 .column {
   display: table;
   height: 100%;
@@ -186,22 +156,21 @@ footer {
   }
 }
 
-#toggle {
-  display: none;
-}
+// PERSISTENT BRANDING / LOAD INDICATOR
+// ------------------------------------
+footer {
+  position: fixed;
+  bottom: $unit;
+  right: $unit;
+  width: 200px;
+  height: 63px;
+  
+  img {
+    @include opacity(50);
+    @include transition(opacity 0.25s);
 
-#navigation {
-  display: none;
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      display: inline-block;
-      width: 25%;
-      margin: 0 $unit $unit 0;
-    }
+    &:hover { @include opacity(100); }
   }
 }
+
+.loading { @include loading; }
