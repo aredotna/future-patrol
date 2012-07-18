@@ -1,12 +1,15 @@
+@import 'mixins';
+
 // CONSTANTS
 // ---------
 $unit: 20px;
-$column: 500px;
+$column: 600px;
 $base-font-size: 15px;
 $base-line-height: 22px;
 
 $background-color: #111;
-$foreground-color: #777;
+$middleground-color: #333;
+$foreground-color: #666;
 $highlight-color: #ccc;
 
 // BASE
@@ -38,63 +41,100 @@ body {
   line-height: $base-line-height;
 }
 
-p, img, embed, object, iframe {
-  // margin: 0 0 $unit 0;
-}
-
 // STRUCTURE
 // ---------
 #container {
-  margin: $unit;
-  // I need a clearfix mixin...
-  overflow: hidden;
+  min-width: 1000%;
+  height: 100%;
+  padding: $unit 0;
+  @include clearfix;
+  @include border-box;
+
+  #main {
+    float: left;
+  }
 }
 
-footer {
+#loading, footer {
   position: fixed;
   bottom: $unit;
   right: $unit;
+  width: 200px;
+  height: 63px;
+}
+
+#loading {
+  display: none;
+  background: red;
+  @include loading;
+}
+
+.loading {
+  @include loading;
+}
+
+footer {
+  @include opacity(50);
+  @include transition(opacity 0.25s);
+
+  &:hover {
+    @include opacity(100);
+  }
+}
+
+.column-wrap {
+  float: left;
 }
 
 .column {
-  clear: both;
+  display: table;
+  height: 100%;
+  @include border-box;
   
-  .connections {
-    float: left;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .connections, .stream {
+    display: table-cell;
+    vertical-align: top;
+    height: 100%;
+    overflow-y: scroll;
+  }
 
-    li {
+  .connections {
+    ul {
+      list-style: none;
       margin: 0;
       padding: 0;
-      text-align: right;
 
-      &.active {
-        margin: $unit 0;
-      }
-
-      a {
-        padding: 1px 4px 2px;
-        font-size: $base-font-size * .846;
-        font-weight: bold;
-        line-height: 14px;
-        color: #fff;
-        vertical-align: baseline;
-        white-space: nowrap;
-        text-shadow: 0 -1px 0 rgba(0,0,0,.25);
-        background-color: $foreground-color;
-        text-decoration: none;
+      li {
+        margin: 0;
+        padding: 0 $unit;
+        text-align: right;
 
         &.active {
-          background-color: red;
-          margin-right: -$unit;
-          display: block;
+          margin: $unit 0;
+          padding-left: 0;
         }
 
-        &:hover {
-          background-color: lighten($foreground-color, 20)
-          // margin-right: -$unit;
+        a {
+          padding: 1px 4px 2px;
+          font-size: $base-font-size * .846;
+          font-weight: bold;
+          line-height: 14px;
+          color: #fff;
+          vertical-align: baseline;
+          white-space: nowrap;
+          text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+          background-color: $foreground-color;
+          text-decoration: none;
+
+          &.active {
+            background-color: red;
+            margin-right: -$unit;
+            display: block;
+          }
+
+          &:hover {
+            background-color: lighten($foreground-color, 20);
+          }
         }
       }
     }
@@ -102,10 +142,10 @@ footer {
 
   .stream {
     float: left;
-    border: 2px solid;
+    border: 2px solid $middleground-color;
     width: $column;
-    margin: 0 $unit;
-    background: lighten($background-color, 2);
+    margin: 0;
+    background: lighten($background-color, 5);
 
     // Also applies to nested headers
     header {
@@ -114,9 +154,12 @@ footer {
       color: $highlight-color;
       font-weight: bold;
 
+      // Main header
       &.channel {
         text-transform: uppercase;
-        border-bottom: 2px solid $foreground-color;
+        border-bottom: 2px solid #222;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+        color: #fff;
       }
     }
 

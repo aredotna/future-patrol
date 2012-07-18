@@ -17,6 +17,10 @@ FuturePatrol.controllers :channels do
     @blocks      = @channel['blocks']
     @connections = flatten_connections(@blocks)
     
-    render 'channels/index'
+    if request.xhr?
+      render 'channels/index', :layout => false
+    else
+      render 'channels/index'
+    end
   end
 end
