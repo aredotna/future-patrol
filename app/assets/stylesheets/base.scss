@@ -63,7 +63,7 @@ body {
   height: 100%;
   @include border-box;
   
-  .connections, .stream {
+  .connections, .channel {
     float: left;
     vertical-align: top;
     height: 100%;
@@ -112,7 +112,7 @@ body {
     }
   }
 
-  .stream {
+  .channel {
     float: left;
     border: 2px solid $middleground-color;
     width: $column;
@@ -127,7 +127,7 @@ body {
       font-weight: bold;
 
       // Main header
-      &.channel {
+      &.title {
         text-transform: uppercase;
         border-bottom: 2px solid #222;
         text-shadow: 0 -1px 0 rgba(0,0,0,.25);
