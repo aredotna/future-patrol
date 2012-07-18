@@ -6,6 +6,8 @@ source :rubygems
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
+gem 'padrino-assets'
+gem 'coffee-script'
 gem 'sass'
 gem 'haml'
 
