@@ -59,12 +59,12 @@ body {
 // FRAGMENT
 // --------
 .column {
-  display: table;
+  @include clearfix;
   height: 100%;
   @include border-box;
   
   .connections, .stream {
-    display: table-cell;
+    float: left;
     vertical-align: top;
     height: 100%;
     overflow-y: scroll;
