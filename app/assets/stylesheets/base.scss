@@ -67,7 +67,7 @@ body {
   }
 }
 
-#loading, footer {
+footer {
   position: fixed;
   bottom: $unit;
   right: $unit;
@@ -75,21 +75,18 @@ body {
   height: 63px;
 }
 
-#loading {
-  display: none;
-  background: red;
-  @include loading;
-}
-
 .loading {
-  @include loading;
+  background: red url(loader.gif) no-repeat center center;
 }
 
 footer {
-  @include opacity(50);
   @include transition(opacity 0.25s);
-
-  &:hover {
+  
+  img {
+    @include opacity(50);
+  }
+  
+  &:hover img {
     @include opacity(100);
   }
 }

@@ -9,12 +9,12 @@ window.FP =
   Views: {},
   Utils:
     startLoad: (_this) ->
-      $("#loading").show()
-      $(_this).addClass "loading"
+      $("#fp").addClass('loading')
+      # $(_this).addClass "loading"
 
     stopLoad: ->
-      $("#loading").hide()
-      $(".connections a").removeClass "loading"
+      $("#fp").removeClass('loading')
+      # $(".connections a").removeClass "loading"
 
   initialize: ->
     @router = new FP.Routers.Router()
