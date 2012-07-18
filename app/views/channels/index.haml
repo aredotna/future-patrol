@@ -3,12 +3,15 @@
 - content_for :main do
 
   %section.column
-    - if @connections
-      %ul.connections
+    %ul.connections
+      - if @connections
         - @connections.each do |connection|
           - if connection[:published] == true
             %li{:class => channel_active_class(connection[:slug], @channel['slug'])}
               = link_to connection[:title], url_for(:channels, :show, :id => connection[:slug].to_s), :class => channel_active_class(connection[:slug], @channel['slug'])
+      - else
+        %li.active
+          = link_to @channel['title'], url_for(:channels, :show, :id => @channel['slug'].to_s), :class => 'active'
 
     .stream
       %header.channel
