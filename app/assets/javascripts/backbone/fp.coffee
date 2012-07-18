@@ -1,5 +1,6 @@
 #= require_self
 #= require ./models
+#= require ./collections
 #= require ./views
 #= require ./router
 
@@ -17,6 +18,7 @@ window.FP =
       $("#fp").removeClass('loading')
 
   initialize: ->
+    @channels = new FP.Collections.Channels()
     @router = new FP.Routers.Router()
     Backbone.history.start({pushState: true})
 

@@ -12,6 +12,7 @@ class FP.Routers.Router extends Backbone.Router
 
   fragment: (slug) ->
     model = new FP.Models.Channel(slug: slug)
+    FP.channels.add(model)
     $.when(model.fetch()).then(=> @render(model.get('fragment')))
 
   render: (fragment) ->
