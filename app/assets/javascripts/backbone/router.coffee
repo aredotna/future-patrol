@@ -11,21 +11,17 @@ class FP.Routers.Router extends Backbone.Router
     # index
 
   fragment: (slug) ->
-    model = new FP.Models.Channel(slug: slug)
-    FP.channels.add(model)
-    $.when(model.fetch()).then(=> @render(model.get('fragment')))
+    channel = new FP.Models.Channel(slug: slug)
+    FP.channels.add(channel)
+    $.when(channel.fetch()).then(=> @render(channel))
 
-  render: (fragment) ->
+  render: (channel) ->
     @trigger 'render:pre'
 
-    $(fragment).hide().appendTo("#main").fadeIn 250, ->
-      offset = 0
-      $(".column-wrap").each (index) ->
-        offset += $(this).width()
-
-      $("#main").animate
-        scrollLeft: offset
-      , 250
+    $(channel.get('fragment')).hide().appendTo('#main').fadeIn 250, ->
+      totals = $('.column-wrap').map(-> $(this).width())
+      offset = _.reduce(totals, ((memo, num) -> memo + num), 0)
+      $('#main').animate({ scrollLeft: offset }, 250)
 
     @trigger 'render:post'
 
@@ -34,6 +30,4 @@ class FP.Routers.Router extends Backbone.Router
 
   postRender: ->
     # Post-render
-    # TODO: Attach the view...
-    # view = new FP.Views.Stream(slug: slug, el: "##{slug}")
     
