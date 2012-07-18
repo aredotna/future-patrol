@@ -30,6 +30,12 @@ a {
   text-decoration: underline;
 }
 
+blockquote {
+  margin: 0;
+  padding: 0 0 0 $unit;
+  border-left: 2px solid $foreground-color;
+}
+
 // TYPE
 // ----
 body {
