@@ -67,29 +67,25 @@ body {
   }
 }
 
+// PERSISTENT BRANDING / LOAD INDICATOR
+// ------------------------------------
 footer {
   position: fixed;
   bottom: $unit;
   right: $unit;
   width: 200px;
   height: 63px;
-}
-
-.loading {
-  background: red url(loader.gif) no-repeat center center;
-}
-
-footer {
-  @include transition(opacity 0.25s);
   
   img {
     @include opacity(50);
-  }
-  
-  &:hover img {
-    @include opacity(100);
+    @include transition(opacity 0.25s);
+
+    &:hover { @include opacity(100); }
   }
 }
+
+.loading { @include loading; }
+
 
 .column {
   display: table;
