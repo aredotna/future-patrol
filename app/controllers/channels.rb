@@ -11,7 +11,7 @@ FuturePatrol.controllers :channels do
   end
 
 
-  get :show, :with => :id do
+  get :show, :map => "/:id" do
     @channel     = Arena::Client.channel(params[:id])
     @channels    = @channel['channels']
     @blocks      = @channel['blocks']
