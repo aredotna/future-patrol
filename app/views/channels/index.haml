@@ -1,0 +1,23 @@
+/ = partial 'layouts/navigation', :locals => { :channels => @channels }
+
+- content_for :main do
+
+  %section.column
+    - if @connections
+      %ul.connections
+        - @connections.each do |connection|
+          - if connection[:published] == true
+            %li{:class => channel_active_class(connection[:slug], @channel['slug'])}
+              = link_to connection[:title], url_for(:channels, :show, :id => connection[:slug].to_s), :class => channel_active_class(connection[:slug], @channel['slug'])
+
+    .stream
+      %header.channel
+        = @channel['title']
+
+      - @blocks.each do |block|
+        %article.post
+          - if block['title']
+            %header.block
+              = block['title']
+          .content
+            = partial "representations/full/#{block['block_type'].downcase}", :locals => { "#{block['block_type'].downcase}".to_sym => block }

@@ -1,0 +1,161 @@
+// CONSTANTS
+// ---------
+$unit: 20px;
+$column: 500px;
+$base-font-size: 15px;
+$base-line-height: 22px;
+
+$background-color: #111;
+$foreground-color: #777;
+$highlight-color: #ccc;
+
+// BASE
+// ----
+body {
+  margin: 0;
+  padding: 0;
+  background: $background-color;
+}
+
+img, iframe, embed, object {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+a {
+  color: $foreground-color;
+  text-decoration: underline;
+}
+
+// TYPE
+// ----
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
+  color: $foreground-color;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+p, img, embed, object, iframe {
+  // margin: 0 0 $unit 0;
+}
+
+// STRUCTURE
+// ---------
+#container {
+  margin: $unit;
+  // I need a clearfix mixin...
+  overflow: hidden;
+}
+
+footer {
+  position: fixed;
+  bottom: $unit;
+  right: $unit;
+}
+
+.column {
+  clear: both;
+  
+  .connections {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+      text-align: right;
+
+      &.active {
+        margin: $unit 0;
+      }
+
+      a {
+        padding: 1px 4px 2px;
+        font-size: $base-font-size * .846;
+        font-weight: bold;
+        line-height: 14px;
+        color: #fff;
+        vertical-align: baseline;
+        white-space: nowrap;
+        text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+        background-color: $foreground-color;
+        text-decoration: none;
+
+        &.active {
+          background-color: red;
+          margin-right: -$unit;
+          display: block;
+        }
+
+        &:hover {
+          background-color: lighten($foreground-color, 20)
+          // margin-right: -$unit;
+        }
+      }
+    }
+  }
+
+  .stream {
+    float: left;
+    border: 2px solid;
+    width: $column;
+    margin: 0 $unit;
+    background: lighten($background-color, 2);
+
+    // Also applies to nested headers
+    header {
+      padding: $unit/2;
+      text-align: center;
+      color: $highlight-color;
+      font-weight: bold;
+
+      &.channel {
+        text-transform: uppercase;
+        border-bottom: 2px solid $foreground-color;
+      }
+    }
+
+    .post {
+      margin: 0 0 $unit*2;
+      overflow: hidden;
+
+      header, .content {
+        margin: $unit/2 0;
+      }
+
+      header {
+        text-align: left;
+        padding: $unit;
+      }
+
+      .content {
+        padding: $unit;
+      }
+    }
+  }
+}
+
+#toggle {
+  display: none;
+}
+
+#navigation {
+  display: none;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      width: 25%;
+      margin: 0 $unit $unit 0;
+    }
+  }
+}

@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #111111; }
+
+img, iframe, embed, object {
+  max-width: 100%;
+  max-height: 100%; }
+
+a {
+  color: #777777;
+  text-decoration: underline; }
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
+  color: #777777;
+  font-size: 15px;
+  line-height: 22px; }
+
+#container {
+  margin: 20px;
+  overflow: hidden; }
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; }
+
+.column {
+  clear: both; }
+  .column .connections {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .column .connections li {
+      margin: 0;
+      padding: 0;
+      text-align: right; }
+      .column .connections li.active {
+        margin: 20px 0; }
+      .column .connections li a {
+        padding: 1px 4px 2px;
+        font-size: 12.69px;
+        font-weight: bold;
+        line-height: 14px;
+        color: #fff;
+        vertical-align: baseline;
+        white-space: nowrap;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #777777;
+        text-decoration: none; }
+        .column .connections li a.active {
+          background-color: red;
+          margin-right: -20px;
+          display: block; }
+        .column .connections li a:hover {
+          background-color: #aaaaaa; }
+  .column .stream {
+    float: left;
+    border: 2px solid;
+    width: 500px;
+    margin: 0 20px;
+    background: #161616; }
+    .column .stream header {
+      padding: 10px;
+      text-align: center;
+      color: #cccccc;
+      font-weight: bold; }
+      .column .stream header.channel {
+        text-transform: uppercase;
+        border-bottom: 2px solid #777777; }
+    .column .stream .post {
+      margin: 0 0 40px;
+      overflow: hidden; }
+      .column .stream .post header, .column .stream .post .content {
+        margin: 10px 0; }
+      .column .stream .post header {
+        text-align: left;
+        padding: 20px; }
+      .column .stream .post .content {
+        padding: 20px; }
+
+#toggle {
+  display: none; }
+
+#navigation {
+  display: none; }
+  #navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    #navigation ul li {
+      display: inline-block;
+      width: 25%;
+      margin: 0 20px 20px 0; }
