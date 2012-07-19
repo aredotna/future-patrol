@@ -7,4 +7,5 @@
 //= require vendor/json2
 //= require vendor/underscore
 //= require vendor/backbone
+//= require vendor/jquery.scrollTo
 //= require backbone/fp
