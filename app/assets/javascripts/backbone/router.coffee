@@ -12,13 +12,17 @@ class FP.Routers.Router extends Backbone.Router
     
     unless _.include(slugs, slug)
       FP.channels.add(channel)
-      $.when(channel.fetch()).then(=> @render(channel))
+      $.when(channel.fetch()).then(=>
+          view = new FP.Views.Channel(channel: channel, el: "##{channel.get('slug')}")
+          @render(view)
+        )
     else
       @moveTo(channel)
 
-  render: (channel) ->
-    $(channel.get('fragment')).hide().appendTo('#main').fadeIn 250, =>
-      @moveTo(channel)
+  render: (view) ->
+    $(view.render()).hide().appendTo('#main').fadeIn 250, =>
+      @moveTo(view.channel)
+      view.setElement("##{view.channel.get('slug')}")
 
   moveTo: (channel) ->
     $('#main').scrollTo("##{channel.get('slug')}", 'fast')
