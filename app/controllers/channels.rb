@@ -1,13 +1,17 @@
 FuturePatrol.controllers :channels do
   DEFAULT_CHANNEL_IDENTIFIER = 'emily-segal'
 
+  before do
+    # ...
+  end
+
   get :index, :map => "/"  do
     @channel     = Arena::Client.channel(DEFAULT_CHANNEL_IDENTIFIER)
     @channels    = @channel['channels']
     @blocks      = @channel['blocks']
     @connections = flatten_connections(@blocks)
     
-    render 'channels/index'
+    render 'channels/show'
   end
 
 
@@ -18,9 +22,9 @@ FuturePatrol.controllers :channels do
     @connections = flatten_connections(@blocks)
     
     if request.xhr?
-      render 'channels/index', :layout => false
+      render 'channels/show', :layout => false
     else
-      render 'channels/index'
+      render 'channels/show'
     end
   end
 end

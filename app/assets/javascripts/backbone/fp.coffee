@@ -5,6 +5,8 @@
 #= require ./router
 
 window.FP =
+  source: 'emily-segal',
+  
   Models: {},
   Collections: {},
   Routers: {},
@@ -13,8 +15,10 @@ window.FP =
   Utils:
     startLoad: ->
       $("#fp").addClass('loading')
+
     stopLoad: ->
       $("#fp").removeClass('loading')
+
     interceptLinks: (context) ->
       $(document).on "click", "a:not([data-bypass])", (e) =>
         href = $(e.currentTarget).attr("href")
@@ -22,6 +26,9 @@ window.FP =
         if href.slice(protocol.length) isnt protocol
           e.preventDefault()
           context.router.navigate href, true
+
+    startingOnIndex: ->
+      Backbone.history.location.pathname is '/'
 
   initialize: ->
     @channels = new FP.Collections.Channels()
