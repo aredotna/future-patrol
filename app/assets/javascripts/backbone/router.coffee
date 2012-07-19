@@ -17,8 +17,13 @@ class FP.Routers.Router extends Backbone.Router
       @moveTo(channel)
 
   render: (channel) ->
-    $(channel.get('fragment')).hide().appendTo('#main').fadeIn 250, ->
-      $('#main').scrollTo("##{channel.get('slug')}", 'fast')
+    $(channel.get('fragment')).hide().appendTo('#main').fadeIn 250, =>
+      @moveTo(channel)
 
   moveTo: (channel) ->
     $('#main').scrollTo("##{channel.get('slug')}", 'fast')
+    @activate('document', channel)
+  
+  activate: (selector, channel) ->
+    $(".#{selector}").removeClass('active')
+    $("##{selector}_#{channel.get('slug')}").addClass('active')

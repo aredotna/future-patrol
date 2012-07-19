@@ -40,7 +40,7 @@ body {
 #container {
   min-width: 100%;
   height: 100%;
-  padding: $unit;
+  padding: 0 $unit;
   @include clearfix;
   @include border-box;
 
@@ -64,9 +64,11 @@ body {
   @include border-box;
   
   .connections, .channel {
+    @include border-box;
     float: left;
     vertical-align: top;
     height: 100%;
+    padding: $unit 0;
     overflow-y: scroll;
   }
 
@@ -114,10 +116,18 @@ body {
 
   .channel {
     float: left;
-    border: 2px solid $middleground-color;
     width: $column;
     margin: 0;
-    background: lighten($background-color, 5);
+
+    .document {
+      border: 2px solid $middleground-color;
+      background: lighten($background-color, 5);
+      @include transition(border-color 0.25s);
+
+      &.active {
+        border-color: red;
+      }
+    }
 
     // Also applies to nested headers
     header {
@@ -132,6 +142,12 @@ body {
         border-bottom: 2px solid #222;
         text-shadow: 0 -1px 0 rgba(0,0,0,.25);
         color: #fff;
+
+        &.active {
+          background-color: #000;
+          text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+          color: #fff;
+        }
       }
     }
 

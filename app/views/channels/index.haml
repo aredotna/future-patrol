@@ -1,16 +1,17 @@
 .column-wrap{:id => "#{@channel['slug']}"}
   %section.column
     .channel
-      %header.title
-        = @channel['title']
+      .document{:id => "document_#{@channel['slug']}"}
+        %header.title{:id => "title_#{@channel['slug']}"}
+          = @channel['title']
 
-      - @blocks.each do |block|
-        %article.post
-          - if block['title']
-            %header.block
-              = block['title']
-          .content
-            = partial "representations/full/#{block['block_type'].downcase}", :locals => { "#{block['block_type'].downcase}".to_sym => block }
+        - @blocks.each do |block|
+          %article.post
+            - if block['title']
+              %header.block
+                = block['title']
+            .content
+              = partial "representations/full/#{block['block_type'].downcase}", :locals => { "#{block['block_type'].downcase}".to_sym => block }
     
     .connections
       %ul
