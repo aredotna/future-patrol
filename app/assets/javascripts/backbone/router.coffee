@@ -17,19 +17,16 @@ class FP.Routers.Router extends Backbone.Router
     slug = $channel_container.attr 'id'
     
     current = FP.channels.where {slug: slug} # remove all channels in front of it in collection
-    console.log 'current', current, 'slug', slug, 'channels', FP.channels
     if current[0]?
       bar = current[0].get 'position'
 
       # no longer relevant
       nlr = FP.channels.filter (model) -> model.get('position') > bar
-      console.log 'nlr', nlr
       FP.channels.remove nlr
 
       $channel_container.nextAll().remove()
 
   index: ->
-    console.log 'fired'
     channel = new FP.Models.Channel(slug: FP.source)
     @fragment(channel.get('slug'), 'pre')
 

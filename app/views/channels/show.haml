@@ -21,7 +21,7 @@
       %ul
         - if @channels
           - @channels.each do |connection|
-            %li
-              = link_to connection['title'], "/#{connection['slug']}", :class => "connection"
+            %li.connection-wrap
+              = link_to connection['title'], "/#{connection['slug']}", :class => "connection", :data => { :context => @channel['slug'] }
     
     
