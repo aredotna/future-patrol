@@ -17,4 +17,8 @@ FuturePatrol.helpers do
   def channel_active_class(channel, current_channel)
     (channel == current_channel) ? "active" : "inactive"
   end
+
+  def connection_is_displayable?(connection, current_channel_slug)
+    (connection[:published] == true) && (connection[:slug] != current_channel_slug)
+  end
 end

@@ -5,9 +5,16 @@ class FP.Views.Channel extends Backbone.View
 
   events:
     'click .connection' : 'check'
+    'click .preview'    : 'loadEmbed'
 
   check: (e) ->
-    console.log $(e.currentTarget)
+    $(e.currentTarget).
+      addClass('active').
+      parent().
+      addClass('active')
+
+  loadEmbed: ->
+    console.log 'hello'
 
   render: ->
     @fragment

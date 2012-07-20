@@ -1,15 +1,5 @@
 .column-wrap{:id => "#{@channel['slug']}"}
   %section.column
-    .connections
-      %ul
-        - if @connections
-          - @connections.each do |connection|
-            - if connection[:published] == true
-              %li{:class => channel_active_class(connection[:slug], @channel['slug'])}
-                = link_to connection[:title], "/#{connection[:slug]}", :class => "#{channel_active_class(connection[:slug], @channel['slug'])} connection"
-        - else
-          %li.active
-            = link_to @channel['title'], url_for(:channels, :show, :id => @channel['slug'].to_s), :class => 'active'
 
     .channel
       .document{:id => "document_#{@channel['slug']}"}
@@ -23,5 +13,15 @@
                 = block['title']
             .content
               = partial "representations/full/#{block['block_type'].downcase}", :locals => { "#{block['block_type'].downcase}".to_sym => block }
+              - if block['description']
+                .description
+                  = block['description']
+
+    .connections
+      %ul
+        - if @channels
+          - @channels.each do |connection|
+            %li
+              = link_to connection['title'], "/#{connection['slug']}", :class => "connection"
     
     

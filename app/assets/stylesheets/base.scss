@@ -21,7 +21,7 @@ a {
 blockquote {
   margin: 0;
   padding: 0 0 0 $unit;
-  border-left: 2px solid $foreground-color;
+  border-left: 2px solid #222;
 }
 
 // TYPE
@@ -40,13 +40,17 @@ body {
 #container {
   min-width: 100%;
   height: 100%;
-  padding: 0 $unit;
+  padding: 0;
   @include clearfix;
   @include border-box;
 
   #main {
     overflow-x: scroll;
     white-space: nowrap;
+
+    .column-wrap:first-child {
+      border-color: yellow;
+    }
 
     .column-wrap {
       display: inline-block;
@@ -59,14 +63,13 @@ body {
 // FRAGMENT
 // --------
 .column {
+  @include border-box;
   @include clearfix;
   height: 100%;
-  @include border-box;
   
   .connections, .channel {
     @include border-box;
     float: left;
-    vertical-align: top;
     height: 100%;
     padding: $unit 0;
     overflow-y: scroll;
@@ -81,7 +84,6 @@ body {
       li {
         margin: 0;
         padding: 0 $unit;
-        // text-align: right;
 
         &.active {
           margin: $unit 0;
@@ -168,7 +170,36 @@ body {
       .content {
         padding: $unit;
       }
+
+      .description {
+        margin: $unit 0;
+      }
     }
+  }
+}
+
+// EMBED PREVIEW
+// -------------
+.preview {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -10px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid red;
   }
 }
 
@@ -189,4 +220,8 @@ footer {
   }
 }
 
+// UTILITY
+// -------
 .loading { @include loading; }
+
+.hide { display: none; }

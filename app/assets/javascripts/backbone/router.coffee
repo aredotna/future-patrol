@@ -10,7 +10,7 @@ class FP.Routers.Router extends Backbone.Router
 
   home: -> # Nothing to see here.
 
-  clearForward: (e)->
+  clearForward: (e) ->
     # find this channel
     $channel_container = $(e.target).closest('.column-wrap')
     slug = $channel_container.attr 'id'
