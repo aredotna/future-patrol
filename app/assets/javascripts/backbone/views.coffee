@@ -13,8 +13,11 @@ class FP.Views.Channel extends Backbone.View
       parent().
       addClass('active')
 
-  loadEmbed: ->
-    console.log 'hello'
+  loadEmbed: (e) ->
+    $target = $(e.currentTarget)
+    $embed = $($target.data('embed'))
+    $embed.attr('src', "#{$embed.attr('src')}&autoplay=1")
+    $target.replaceWith $embed
 
   render: ->
     @fragment
