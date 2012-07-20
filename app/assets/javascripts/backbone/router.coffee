@@ -57,7 +57,7 @@ class FP.Routers.Router extends Backbone.Router
     view.channel.set 'position', ++@pos
 
   moveTo: (channel) ->
-    # $('#main').scrollTo("##{channel.get('slug')}", 'fast')
+    $('#main').scrollTo("##{channel.get('slug')}", 'fast')
     @activate('document', channel)
   
   activate: (selector, channel) ->
