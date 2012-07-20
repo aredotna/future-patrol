@@ -45,9 +45,9 @@ class FP.Routers.Router extends Backbone.Router
 
   render: (view, position) ->
     if position is 'post'
-      $(view.render()).hide().appendTo('#main').fadeIn 250, => @postRender(view, 'appended')
+      $(view.render()).hide().appendTo('#main').fadeIn 150, => @postRender(view, 'appended')
     else
-      $(view.render()).hide().prependTo('#main').fadeIn 250, => @postRender(view, 'prepended')
+      $(view.render()).hide().prependTo('#main').fadeIn 150, => @postRender(view, 'prepended')
 
   postRender: (view, position) ->
     @moveTo(view.channel)

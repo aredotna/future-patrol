@@ -1,5 +1,5 @@
 FuturePatrol.controllers :channels do
-  DEFAULT_CHANNEL_IDENTIFIER = 'backboneconf'
+  DEFAULT_CHANNEL_IDENTIFIER = 'semblance'
 
   before do
     # ...

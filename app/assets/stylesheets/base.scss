@@ -47,15 +47,17 @@ body {
   #main {
     overflow-x: scroll;
     white-space: nowrap;
+    font-size: 0;
 
-    .column-wrap:first-child {
-      border-color: yellow;
-    }
-
+    .column-wrap:first-child { margin-left: $unit; }
+    .column-wrap:last-child  { margin-right: $unit; }
     .column-wrap {
       display: inline-block;
       white-space: normal;
       vertical-align: top;
+
+      // Re-setup font-size
+      & > * { font-size: $base-font-size; }
     }
   }
 }
