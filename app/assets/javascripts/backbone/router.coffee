@@ -11,6 +11,9 @@ class FP.Routers.Router extends Backbone.Router
   home: -> 
     channel = new FP.Models.Channel({slug: FP.source, position: 0})
     FP.channels.add(channel)
+    view = new FP.Views.Channel(channel: channel, el: "##{channel.get('slug')}")
+    view.setElement("##{view.channel.get('slug')}")
+
 
   clearForward: (e) ->
     $channel_container = $(e.target).closest('.column-wrap') # find this channel
