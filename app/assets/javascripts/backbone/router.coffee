@@ -8,26 +8,28 @@ class FP.Routers.Router extends Backbone.Router
     @pos = 0
     $(document).on "click", "a:not([data-bypass])", @clearForward
 
-  home: -> # Nothing to see here.
+  home: -> 
+    channel = new FP.Models.Channel({slug: FP.source, position: 0})
+    FP.channels.add(channel)
 
   clearForward: (e) ->
-    # find this channel
-    $channel_container = $(e.target).closest('.column-wrap')
+    $channel_container = $(e.target).closest('.column-wrap') # find this channel
     slug = $channel_container.attr 'id'
     
-    # remove all channels in front of it in collection
-    current = FP.channels.where {slug: slug}
+    current = FP.channels.where {slug: slug} # remove all channels in front of it in collection
+    console.log 'current', current, 'slug', slug, 'channels', FP.channels
     if current[0]?
       bar = current[0].get 'position'
 
       # no longer relevant
       nlr = FP.channels.filter (model) -> model.get('position') > bar
+      console.log 'nlr', nlr
       FP.channels.remove nlr
 
-    # clear dom in front of connection
-    $channel_container.nextAll().remove()
+      $channel_container.nextAll().remove()
 
   index: ->
+    console.log 'fired'
     channel = new FP.Models.Channel(slug: FP.source)
     @fragment(channel.get('slug'), 'pre')
 
@@ -55,7 +57,7 @@ class FP.Routers.Router extends Backbone.Router
     view.channel.set 'position', ++@pos
 
   moveTo: (channel) ->
-    $('#main').scrollTo("##{channel.get('slug')}", 'fast')
+    # $('#main').scrollTo("##{channel.get('slug')}", 'fast')
     @activate('document', channel)
   
   activate: (selector, channel) ->
