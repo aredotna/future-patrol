@@ -33,6 +33,8 @@ window.FP =
   initialize: ->
     @channels = new FP.Collections.Channels()
     @router = new FP.Routers.Router()
+    @view = new FP.Views.Application({ el: $('#container') })
+
     Backbone.history.start({pushState: true})
     @Utils.interceptLinks(this)
 

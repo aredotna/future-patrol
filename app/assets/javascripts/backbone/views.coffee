@@ -1,3 +1,15 @@
+###
+Application
+###
+class FP.Views.Application extends Backbone.View
+  events:
+    'click #fp' : 'goHome'
+
+  goHome: -> $.scrollTo(0,150)
+
+###
+Channel
+###
 class FP.Views.Channel extends Backbone.View
   initialize: (options) ->
     @channel = options.channel
@@ -19,15 +31,15 @@ class FP.Views.Channel extends Backbone.View
       addClass('active')
 
   deactivate: ->
-    @$('.active').removeClass('active')
+    @$('.active').removeClass 'active'
 
 
   check: ->
-    @target.data('context')
+    @target.data 'context'
 
   loadEmbed: (e) ->
     $target = $(e.currentTarget)
-    $embed = $($target.data('embed'))
+    $embed = $($target.data 'embed')
     $embed.attr('src', "#{$embed.attr('src')}&autoplay=1")
     $target.replaceWith $embed
 
