@@ -4,7 +4,10 @@ class FP.Routers.Router extends Backbone.Router
     ":slug" : "fragment"
 
   initialize: ->
-    @index() unless FP.Utils.startingOnIndex()
+    unless FP.Utils.startingOnIndex()
+      @index()
+      @deactivateNav()
+
     @pos = 0
     $(document).on "click", "a:not([data-bypass])", @clearForward
 
@@ -14,6 +17,8 @@ class FP.Routers.Router extends Backbone.Router
     view = new FP.Views.Channel(channel: channel, el: "##{channel.get('slug')}")
     view.setElement("##{view.channel.get('slug')}")
 
+  deactivateNav: ->
+    $('#primary').removeClass('active')
 
   clearForward: (e) ->
     $channel_container = $(e.target).closest('.column-wrap') # find this channel
@@ -34,6 +39,7 @@ class FP.Routers.Router extends Backbone.Router
     @fragment(channel.get('slug'), 'pre')
 
   fragment: (slug, position='post') ->
+    @deactivateNav()
     channel = new FP.Models.Channel(slug: slug)
     slugs = FP.channels.pluck('slug')
     
