@@ -6,6 +6,12 @@
 
   %body
     #container
+      %nav#primary
+        .outer
+          .inner
+            = link_to 'About', '#'
+            = link_to '#', '#'
+            = link_to 'Wolf Ollins', '#'
       %section#main
         = yield
       %footer#fp
