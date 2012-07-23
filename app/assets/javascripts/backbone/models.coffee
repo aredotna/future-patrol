@@ -1,7 +1,7 @@
 class FP.Models.Channel extends Backbone.Model
   initialize: ->
-    @on "add", (model, collection, options) ->
-      console.log "model:add", model, collection, options, options.index
+    @on 'add', (model, collection, options) ->
+      # console.log "model:add", model, collection, options, options.index
 
   fetch: ->
     FP.Utils.startLoad()
@@ -12,3 +12,7 @@ class FP.Models.Channel extends Backbone.Model
         @set { fragment: response }
 
   setFragment: -> @set { fragment: $("##{@get('slug')}").html() }
+
+  destroy: ->
+    $("##{@get('slug')}").nextAll().remove()
+    @remove

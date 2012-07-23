@@ -2,10 +2,11 @@
 Application
 ###
 class FP.Views.Application extends Backbone.View
-  events:
-    'click #fp' : 'goHome'
+  activateMenu: ->
+    @$('#primary').addClass('active')
 
-  goHome: -> $.scrollTo(0,150)
+  deactivateMenu: ->
+    @$('#primary').removeClass('active')
 
 ###
 Channel
@@ -16,26 +17,28 @@ class FP.Views.Channel extends Backbone.View
     @fragment = @channel.get('fragment')
 
   events:
-    'click .connection' : 'activiate'
+    'click .connection' : 'loadConnection'
     'click .preview'    : 'loadEmbed'
 
-  activiate: (e) ->
+  loadConnection: (e) ->
     @target = $(e.currentTarget)
 
-    @check()
-    @deactivate()
+    @deactivateContext()
+    @deactivateLinks()
 
     @target.
       addClass('active').
       parent().
       addClass('active')
 
-  deactivate: ->
+  deactivateLinks: ->
     @$('.active').removeClass 'active'
 
 
-  check: ->
-    @target.data 'context'
+  deactivateContext: ->
+    # channel = FP.channels.where({ slug: @target.data('context') })[0]
+    # channel.destroy()
+    $("##{@target.data('context')}").nextAll().hide()
 
   loadEmbed: (e) ->
     $target = $(e.currentTarget)
@@ -43,5 +46,4 @@ class FP.Views.Channel extends Backbone.View
     $embed.attr('src', "#{$embed.attr('src')}&autoplay=1")
     $target.replaceWith $embed
 
-  render: ->
-    @fragment
+  render: -> @fragment

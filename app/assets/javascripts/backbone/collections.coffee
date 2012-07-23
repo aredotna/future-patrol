@@ -21,14 +21,17 @@ class FP.Collections.Channels extends Backbone.Collection
 
   insert: (channel) ->
     unless @isPresent(channel.get('slug'))
-      console.log("#{channel.get('slug')} is not present")
-
       @_add(channel)
       $.when(channel.fetch()).then =>
         @trigger('render:channel', channel)
-
     else
-      console.log("#{channel.get('slug')} is present")
-
       @_add(channel)
       @trigger('move:channel', channel)
+
+  activate: (channel) ->
+    channel.set { active: true }
+    @trigger 'activate:channel', channel
+
+  deactivate: (channel) ->
+    channel.set { active: false }
+    @trigger 'deactivate:channel', channel
