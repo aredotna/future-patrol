@@ -29,8 +29,15 @@ class FP.Collections.Channels extends Backbone.Collection
       @trigger('move:channel', channel)
 
   activate: (channel) ->
+    
+    FP.channels.each (channel) ->
+      channel.set { active: false }
+
     channel.set { active: true }
+    
     @trigger 'activate:channel', channel
+
+    console.log 'channels:', FP.channels
 
   deactivate: (channel) ->
     channel.set { active: false }

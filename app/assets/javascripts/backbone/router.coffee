@@ -43,7 +43,7 @@ class FP.Routers.Router extends Backbone.Router
     # console.log 'activate', channel.get('slug')
 
   deactivateChannel: (channel) ->
-    console.log 'deactivate', channel.get('slug')
+    # console.log 'deactivate', channel.get('slug')
 
   attachView: (view) ->
     view.setElement("##{view.channel.get('slug')}")

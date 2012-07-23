@@ -19,8 +19,10 @@
 
     .connections
       %ul
-        - if @channels
+        - if @channels.size > 0
           - @channels.each do |connection|
             - if connection['published']
               %li.connection-wrap
                 = link_to connection['title'], "/#{connection['slug']}", :class => "connection", :data => { :context => @channel['slug'] }
+        - else
+          %li.connection-wrap ...
