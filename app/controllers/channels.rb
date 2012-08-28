@@ -1,5 +1,5 @@
 FuturePatrol.controllers :channels do
-  DEFAULT_CHANNEL_IDENTIFIER = 'semblance'
+  DEFAULT_CHANNEL_IDENTIFIER = 'future-patrol'
 
   before do
     # ...
