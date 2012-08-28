@@ -5,7 +5,7 @@
 #= require ./router
 
 window.FP =
-  source: 'semblance',
+  source: 'future-patrol',
   
   Models: {},
   Collections: {},
